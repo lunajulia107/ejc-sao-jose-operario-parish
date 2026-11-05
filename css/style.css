@@ -3568,12 +3568,6 @@ body:not([data-state="duvida"]) .dv-bar {
 .links a {
   white-space: nowrap;
 }
-.reasons {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.reason b {
-  overflow-wrap: break-word;
-}
 @media (min-width: 960px) {
   .links {
     display: flex;
@@ -3698,4 +3692,45 @@ body.closed .dv-bar {
 /* ===== tags semânticas ===== */
 cite {
   font-style: normal;
+}
+
+/* ===== grade de escolha igual: dúvida e desisti ===== */
+.dq-grid,
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  margin: 0;
+}
+.dq,
+.reason {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-height: 150px;
+  padding: 16px;
+  border-radius: 22px;
+}
+.dq-ico,
+.reason .r-ico {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  margin-bottom: auto;
+}
+.dq b,
+.reason b {
+  margin-top: 14px;
+  font-size: 19px;
+  line-height: 1.1;
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+@media (min-width: 760px) {
+  .dq,
+  .reason {
+    min-height: 170px;
+  }
 }
