@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>7º EJC · O que levar</title>
+<title>7º EJC</title>
+<meta name="description" content="7º EJC">
+<link rel="icon" type="image/png" href="assets/ejc-logo.png">
+<link rel="apple-touch-icon" href="assets/ejc-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Yellowtail&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -349,8 +352,6 @@
 
   @media (min-width:760px){
     .wrap{padding:0 32px}
-    .links{display:flex}
-    .menu-btn{display:none}
     .hero-panel{grid-template-columns:1.1fr 1fr;align-items:stretch}
     .cards{grid-template-columns:1fr 1fr}
     .card.alert{grid-row:span 2}
@@ -402,7 +403,8 @@
   .parish-mini{margin-top:56px}
 
   /* ===== UX ===== */
-  a:focus-visible,button:focus-visible{outline:2px solid var(--white);outline-offset:3px;border-radius:999px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+  .gopt,.dq,.reason,.opt{-webkit-tap-highlight-color:transparent}
   .fact-link{display:block;text-decoration:none;color:inherit;transition:border-color .25s,transform .25s}
   .fact-link:hover{border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
   .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
@@ -789,6 +791,45 @@
   .dc-card::after{inset:0 0 auto 0;height:340px;background:linear-gradient(to top,#0d1645 0%,rgba(13,22,69,0) 45%)}
   .dc-card figcaption{margin-top:-40px;padding:0 22px 28px}
   @media (min-width:760px){.dc-card{display:grid;grid-template-columns:300px 1fr;align-items:center}.dc-card img{height:100%;min-height:380px}.dc-card::after{display:none}.dc-card figcaption{margin:0;padding:30px}}
+
+  /* ===== menu centralizado ===== */
+  .nav .wrap{position:relative}
+  .links a{white-space:nowrap}
+  .reasons{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reason b{overflow-wrap:break-word}
+  @media (min-width:960px){
+    .links{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+    .menu-btn{display:none}
+  }
+
+  /* ===== te vejo lá ===== */
+  h2.bye{display:flex;flex-direction:column;align-items:center;font-weight:400;font-size:clamp(72px,21vw,150px);line-height:.88;margin-top:22px}
+  .bye .d{display:block}
+  .bye .s{display:block;font-size:.72em;line-height:1.15;margin-top:0;color:var(--red)}
+  .bye-when{margin-top:16px;color:var(--soft)}
+  .closing-btns{gap:10px}
+
+  /* ===== rodapé ===== */
+  .parish-mini b,.parish-mini address,.parish-mini a,.fine{color:var(--white)}
+  footer{padding-bottom:110px} /* espaço pro botão flutuante do checklist não cobrir o rodapé */
+  .parish-mini img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 30%}
+
+  /* ===== nome em fundo escuro + botão "eu vou" no WhatsApp ===== */
+  .name-field.dark{max-width:380px;margin:0 auto 16px;text-align:left}
+  .name-field.dark span{color:var(--white)}
+  .name-field.dark .name-input{background:rgba(255,255,255,.08);border-color:var(--glass-b);color:#fff}
+  .name-field.dark .name-input::placeholder{color:rgba(255,255,255,.5)}
+  .name-field.dark .name-input:focus{border-color:var(--red)}
+  .btn .wa-ico{fill:currentColor;stroke:none;animation:none}
+  .dv-end p{color:var(--soft);font-size:16px;margin:-6px auto 20px;max-width:380px}
+  .dv-end p b,.deadline-note b{color:var(--white)}
+
+  /* ===== prazo da exceção (inscrições já fechadas) ===== */
+  body.closed .open-only{display:none !important}
+  body:not(.closed) .closed-only{display:none !important}
+  body.closed .dv-bar{grid-template-columns:1fr}
+  .closed-note p{margin:0 auto 22px}
+  .ds-verse .deadline-note{margin:0 auto 16px;color:var(--soft)}
 </style>
 </head>
 <body>
@@ -801,9 +842,9 @@
     <ul class="links">
       <li><a href="#tema">Tema</a></li>
       <li><a href="#musica">Música</a></li>
+      <li><a href="#padroeiro">Santo padroeiro</a></li>
       <li><a href="#levar">O que levar</a></li>
       <li><a href="#avisos">Avisos</a></li>
-      <li><a href="#padroeiro">Carlo</a></li>
     </ul>
     <button class="status" id="statusBtn" type="button" hidden aria-label="Trocar minha resposta"><span class="status-dot"></span><span id="statusTxt"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></button>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="overlay"><span class="burger" aria-hidden="true"></span>Menu</button>
@@ -815,9 +856,9 @@
     <li><a href="#inicio"><span class="m">00</span><span class="d">Início</span></a></li>
     <li><a href="#tema"><span class="m">01</span><span class="d">Tema</span></a></li>
     <li><a href="#musica"><span class="m">02</span><span class="d">Música</span></a></li>
-    <li><a href="#levar"><span class="m">03</span><span class="d">O que levar</span></a></li>
-    <li><a href="#avisos"><span class="m">04</span><span class="d">Avisos</span></a></li>
-    <li><a href="#padroeiro"><span class="m">05</span><span class="d">Carlo Acutis</span></a></li>
+    <li><a href="#padroeiro"><span class="m">03</span><span class="d">Santo padroeiro</span></a></li>
+    <li><a href="#levar"><span class="m">04</span><span class="d">O que levar</span></a></li>
+    <li><a href="#avisos"><span class="m">05</span><span class="d">Avisos</span></a></li>
   </ol>
 </div>
 
@@ -890,9 +931,28 @@
     </div>
   </section>
 
+  <section id="padroeiro">
+    <div class="wrap">
+      <div class="sec-head rv"><span class="m">Nosso santo padroeiro</span><span class="m n">03</span></div>
+      <div class="patron">
+        <figure class="photo rv d1" id="photo">
+          <img src="assets/carlo2.jpg" alt="Carlo Acutis de camisa polo vermelha e óculos escuros, numa trilha na montanha" width="720" height="900">
+          <span class="big" aria-hidden="true">91</span>
+          <figcaption class="m">1991 — 2006</figcaption>
+        </figure>
+        <div class="rv d2">
+          <div class="name"><span class="s">Carlo</span> Acutis</div>
+          <p>Jovem, gamer, programador, apaixonado por futebol, e com a Eucaristia no centro da vida. Prova de que dá pra ser santo sendo você mesmo.</p>
+          <p class="q">“A Eucaristia é a minha autoestrada para o Céu.”</p>
+          <span class="hash m">#NoFlowDoCéu</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="levar">
     <div class="wrap">
-      <div class="sec-head rv"><span class="m">Checklist</span><span class="m n">03</span></div>
+      <div class="sec-head rv"><span class="m">Checklist</span><span class="m n">04</span></div>
       <h2 class="d rv d1">O que levar</h2>
       <p class="body rv d2" style="margin-top:14px">Vai marcando conforme separa. Fica salvo aqui no seu celular.</p>
 
@@ -950,7 +1010,7 @@
 
   <section id="avisos">
     <div class="wrap">
-      <div class="sec-head rv"><span class="m">Fique ligado</span><span class="m n">04</span></div>
+      <div class="sec-head rv"><span class="m">Fique ligado</span><span class="m n">05</span></div>
       <h2 class="d rv d1" style="margin-bottom:28px">Avisos</h2>
       <div class="cards">
         <div class="glass card alert rv" id="alertCard">
@@ -981,25 +1041,6 @@
     </div>
   </section>
 
-  <section id="padroeiro">
-    <div class="wrap">
-      <div class="sec-head rv"><span class="m">Nosso padroeiro</span><span class="m n">05</span></div>
-      <div class="patron">
-        <figure class="photo rv d1" id="photo">
-          <img src="assets/carlo2.jpg" alt="Carlo Acutis de camisa polo vermelha e óculos escuros, numa trilha na montanha" width="720" height="900">
-          <span class="big" aria-hidden="true">91</span>
-          <figcaption class="m">1991 — 2006</figcaption>
-        </figure>
-        <div class="rv d2">
-          <div class="name"><span class="s">Carlo</span> Acutis</div>
-          <p>Jovem, gamer, programador, apaixonado por futebol, e com a Eucaristia no centro da vida. Prova de que dá pra ser santo sendo você mesmo.</p>
-          <p class="q">“A Eucaristia é a minha autoestrada para o Céu.”</p>
-          <span class="hash m">#NoFlowDoCéu</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <a class="fab" id="fab" href="#levar" aria-label="Ir para o checklist">
@@ -1012,15 +1053,14 @@
   <div class="wrap">
     <div class="closing">
       <span class="m pill rv">Última chamada</span>
-      <div class="d bye rv d1">Te vejo<br><span class="s">lá.</span></div>
+      <h2 class="bye rv d1"><span class="d">Te vejo</span><span class="s">lá.</span></h2>
+      <span class="m bye-when rv d1">Sábado 28 e domingo 29 de novembro</span>
       <p class="recap rv d2"><b>Bíblia e terço</b> na mochila, <b>celular</b> em casa, <b>coração</b> aberto. O resto é com Deus.</p>
       <div class="closing-btns rv d3">
         <a class="maps" id="calBtn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=7%C2%BA%20EJC%20%C2%B7%20Encontro%20de%20Jovens%20com%20Cristo&amp;dates=20261128/20261130&amp;location=Escola%20J%C3%BAlio%20Gomes%20Camis%C3%A3o%2C%20Parque%20Imperial&amp;details=Hor%C3%A1rio%3A%20confirme%20com%20seus%20tios.%20Leve%20B%C3%ADblia%20e%20ter%C3%A7o." target="_blank" rel="noopener">
           Salvar na agenda
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
         </a>
-      </div>
-      <div class="closing-btns">
         <a class="maps ghost-btn" href="https://www.youtube.com/watch?v=whzXC1KsW-Q" target="_blank" rel="noopener">
           Ouvir Lázaro
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l12 8-12 8z"/></svg>
@@ -1028,14 +1068,13 @@
       </div>
     </div>
     <div class="parish-mini">
-      <img src="assets/brasao.jpg" alt="Brasão da Paróquia São José Operário" width="26" height="31">
+      <img src="assets/brasao.jpg" alt="Brasão da Paróquia São José Operário" width="64" height="64">
       <div>
         <b>Paróquia São José Operário</b>
         <address>Rua Piacatu, 477 · Jardim Munhoz Júnior · Osasco - SP · CEP 06240-160</address>
         <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Piacatu%2C+477+-+Jardim+Munhoz+J%C3%BAnior%2C+Osasco+-+SP%2C+06240-160" target="_blank" rel="noopener">Ver no Maps ↗</a>
       </div>
     </div>
-    <img class="foot-logo" src="assets/ejc-logo.png" alt="Logo do EJC" width="56" height="56">
     <span class="m fine">7º EJC · Encontro de Jovens com Cristo · 2026</span>
   </div>
 </footer>
@@ -1060,7 +1099,7 @@
         <button class="dq" type="button" data-dq="timido" aria-controls="dqAnswer"><span class="dq-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M9.5 15.5c1.5 1 3.5 1 5 0"/></svg></span><b>Sou tímido</b><i class="dq-check" aria-hidden="true"></i></button>
         <button class="dq" type="button" data-dq="celular" aria-controls="dqAnswer"><span class="dq-ico"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/></svg></span><b>Vou ficar sem celular?</b><i class="dq-check" aria-hidden="true"></i></button>
         <button class="dq" type="button" data-dq="gostar" aria-controls="dqAnswer"><span class="dq-ico"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><b>E se eu não gostar?</b><i class="dq-check" aria-hidden="true"></i></button>
-        <button class="dq" type="button" data-dq="outro" aria-controls="dqAnswer"><span class="dq-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.4-1.2 1-1.2 1.8v.3"/><path d="M12 17h.01"/></svg></span><b>Tenho outra dúvida</b><i class="dq-check" aria-hidden="true"></i></button>
+        <button class="dq open-only" type="button" data-dq="outro" aria-controls="dqAnswer"><span class="dq-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.4-1.2 1-1.2 1.8v.3"/><path d="M12 17h.01"/></svg></span><b>Tenho outra dúvida</b><i class="dq-check" aria-hidden="true"></i></button>
       </div>
       <div class="dq-answer" id="dqAnswer" hidden tabindex="-1" aria-live="polite">
         <span class="m dq-a-k" id="dqAK"></span>
@@ -1068,7 +1107,7 @@
         <p id="dqAP"></p>
         <div class="dq-a-actions">
           <button type="button" class="dq-next" id="dqNext">Ver outra dúvida</button>
-          <a class="dq-talk" href="#conversa" data-scroll="conversa">Quero conversar</a>
+          <a class="dq-talk open-only" href="#conversa" data-scroll="conversa">Quero conversar</a>
         </div>
       </div>
     </div>
@@ -1095,7 +1134,7 @@
     </div>
   </section>
 
-  <section class="dv-talk" id="conversa">
+  <section class="dv-talk open-only" id="conversa">
     <div class="ds-wrap">
       <div class="talk-card">
         <span class="m">Ainda com dúvida?</span>
@@ -1110,16 +1149,24 @@
     </div>
   </section>
 
-  <section class="dv-end">
+  <section class="dv-end" id="decidi">
     <div class="ds-wrap">
-      <h2 class="d">E aí, <span class="s">bora?</span></h2>
-      <a class="btn btn-red btn-xl" href="#aceitei" data-go="aceitei">Decidi: eu vou!</a>
+      <div class="open-only">
+        <h2 class="d">E aí, <span class="s">bora?</span></h2>
+        <p>As inscrições já fecharam, mas <b>estamos abrindo uma exceção até sábado, 21/11</b>. Coloca seu nome e avisa a gente pelo WhatsApp.</p>
+        <label class="name-field dark"><span>Como você se chama?</span><input type="text" class="name-input" placeholder="Seu nome" autocomplete="given-name" maxlength="40"></label>
+        <a class="btn btn-red btn-xl" data-wa-ctx="vou-duvida" data-wa-go="aceitei" href="#" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg>Decidi: eu vou!</a>
+      </div>
+      <div class="closed-only closed-note">
+        <h2 class="d">Fica pra <span class="s">2027.</span></h2>
+        <p>As inscrições pro 7º EJC já fecharam, e o prazo das exceções terminou em <b>21/11</b>. Mas o EJC acontece todo ano, e <b>em 2027, se Deus quiser, a gente quer muito você com a gente.</b></p>
+      </div>
     </div>
   </section>
 
-  <div class="dv-bar" id="dvBar">
+  <div class="dv-bar open-only" id="dvBar">
     <a class="dv-bar-talk" href="#conversa" data-scroll="conversa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg>Conversar</a>
-    <a class="dv-bar-go" href="#aceitei" data-go="aceitei">Eu vou!</a>
+    <a class="dv-bar-go open-only" href="#decidi" data-scroll="decidi">Eu vou!</a>
   </div>
 </div>
 
@@ -1140,15 +1187,23 @@
           <span class="r-ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg></span>
           <b>Prova ou vestibular</b><small>a data tá colada nas provas</small>
         </button>
+        <button class="reason" type="button" data-reason="trabalho">
+          <span class="r-ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+          <b>Vou trabalhar</b><small>preciso trabalhar no fim de semana do encontro</small>
+        </button>
         <button class="reason" type="button" data-reason="data">
           <span class="r-ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
-          <b>Outro compromisso</b><small>trabalho, viagem, família…</small>
+          <b>Outro compromisso</b><small>viagem, família, festa…</small>
+        </button>
+        <button class="reason" type="button" data-reason="dias">
+          <span class="r-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <b>Não consigo ir os dois dias</b><small>só daria pra ir em um dia ou em parte</small>
         </button>
         <button class="reason" type="button" data-reason="animo">
           <span class="r-ico"><svg viewBox="0 0 24 24"><path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.6 1.5A3.8 3.8 0 0 1 17.5 18z"/></svg></span>
           <b>Tô desanimado</b><small>não conheço ninguém, tô pensando…</small>
         </button>
-        <button class="reason" type="button" data-reason="outro">
+        <button class="reason open-only" type="button" data-reason="outro">
           <span class="r-ico"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5.1A8 8 0 1 1 21 12z"/></svg></span>
           <b>Outro motivo</b><small>prefiro falar com alguém</small>
         </button>
@@ -1169,7 +1224,21 @@
       <div class="r-panel" id="r-data" hidden tabindex="-1">
         <h2 class="d">A gente <span class="s">entende.</span></h2>
         <p>Imprevisto acontece. O EJC acontece todo ano, e <b>em 2027, se Deus quiser, a gente quer muito você com a gente.</b></p>
-        <p>Se alguma coisa mudar até o dia 28, é só falar com o seu tio.</p>
+        <p class="open-only">Se alguma coisa mudar até o dia 21/11, é só falar com o seu tio.</p>
+        <div class="r-next"><span class="m">Próximo EJC</span><b>2027</b><small>se Deus quiser</small></div>
+      </div>
+
+      <div class="r-panel" id="r-trabalho" hidden tabindex="-1">
+        <h2 class="d">Valeu por <span class="s">avisar.</span></h2>
+        <p>Trabalho é responsabilidade, e a gente respeita. Vamos rezar por você nesse fim de semana.</p>
+        <p><span class="open-only">Se der pra trocar a escala ou conseguir folga nos dias 28 e 29, é só falar com o seu tio até 21/11. Se não der, </span><span class="closed-only">As inscrições deste ano já fecharam, mas </span><b>em 2027, se Deus quiser, a gente te espera.</b></p>
+        <div class="r-next"><span class="m">Próximo EJC</span><b>2027</b><small>se Deus quiser</small></div>
+      </div>
+
+      <div class="r-panel" id="r-dias" hidden tabindex="-1">
+        <h2 class="d">Tem que ser <span class="s">os dois dias.</span></h2>
+        <p>O EJC é vivido do começo ao fim: <b>só dá pra participar se for nos dois dias inteiros</b>, sábado e domingo. Cada momento prepara o próximo, então não tem como entrar no meio ou ir só em um dia.</p>
+        <p><span class="open-only">Se der pra reorganizar e ficar os dois dias, fala com o seu tio até 21/11. Se não der agora, </span><span class="closed-only">As inscrições deste ano já fecharam, mas </span><b>em 2027, se Deus quiser, a gente te espera.</b></p>
         <div class="r-next"><span class="m">Próximo EJC</span><b>2027</b><small>se Deus quiser</small></div>
       </div>
 
@@ -1189,7 +1258,12 @@
       <q>Eis que estou à porta e bato.</q>
       <span class="m">Apocalipse 3,20</span>
       <p>Seja agora ou em 2027, essa porta continua aberta pra você.</p>
-      <a class="btn btn-red btn-xl" href="#aceitei" data-go="aceitei">Mudei de ideia, eu vou!</a>
+      <div class="open-only">
+        <p class="deadline-note">Mudou de ideia? As inscrições já fecharam, mas <b>estamos abrindo uma exceção até sábado, 21/11</b>.</p>
+        <label class="name-field dark"><span>Como você se chama?</span><input type="text" class="name-input" placeholder="Seu nome" autocomplete="given-name" maxlength="40"></label>
+        <a class="btn btn-red btn-xl" data-wa-ctx="vou-desisti" data-wa-go="aceitei" href="#" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg>Mudei de ideia, eu vou!</a>
+      </div>
+      <p class="closed-only deadline-note">As inscrições pro 7º EJC já fecharam, e o prazo das exceções terminou em <b>21/11</b>. Em 2027, se Deus quiser, essa porta abre de novo pra você.</p>
       <a class="v-link form-link" id="formLink" href="#" target="_blank" rel="noopener" hidden>Conta pra gente em 10 segundos o que pesou (anônimo)</a>
     </div>
   </section>
@@ -1207,7 +1281,7 @@
       </button>
       <button class="gopt g-white" type="button" data-pick="duvida">
         <span class="gopt-ico"><svg viewBox="0 0 24 24"><path d="M9.1 9a3 3 0 1 1 4.2 2.7c-.8.4-1.3 1.1-1.3 2v.3"/><circle cx="12" cy="17.5" r=".6" fill="currentColor"/></svg></span>
-        <span><b>Tô em dúvida</b><small>bora conversar</small></span>
+        <span><b>Tô em dúvida</b><small><span class="open-only">bora conversar</span><span class="closed-only">tira suas dúvidas aqui</span></small></span>
       </button>
       <button class="gopt g-navy" type="button" data-pick="desisti">
         <span class="gopt-ico"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></span>
@@ -1351,6 +1425,22 @@
   var WA_NUMBER = "5511947724176";
   var FORM_URL = "";   /* link do Google Forms anônimo (opcional) */
   var seen = [];       /* dúvidas que a pessoa abriu no chat */
+  var pickedReason = ""; /* motivo escolhido na página de desistência */
+
+  /* ---- prazo pra quem estava em dúvida ou desistiu avisar que vai ---- */
+  var DEADLINE = new Date("2026-11-21T23:59:59-03:00").getTime();
+  /* pra testar como fica depois do prazo: abra a página com ?prazo=encerrado */
+  function isClosed(){ return /[?&]prazo=encerrado/.test(location.search) || Date.now() > DEADLINE; }
+  function applyDeadline(){ document.body.classList.toggle("closed", isClosed()); updDqCount(); }
+  /* depois do prazo some o card "Tenho outra dúvida" (ele levava pro WhatsApp) */
+  function dqKeys(){ return ["conhecer","igreja","timido","celular","gostar","outro"].filter(function(k){ return !(k === "outro" && isClosed()); }); }
+  function updDqCount(){
+    var el = document.getElementById("dqCount"); if (!el) return;
+    var keys = dqKeys(), n = 0;
+    if (typeof DQ !== "undefined") keys.forEach(function(k){ if (seen.indexOf(DQ[k].t) > -1) n++; });
+    el.textContent = n + " de " + keys.length + " vistas";
+  }
+  applyDeadline(); setInterval(applyDeadline, 60000);
   function waLink(ctx, reason){
     var nm = ""; try { nm = (document.querySelector(".name-input") || {}).value || ""; } catch(e) {}
     var lines = ["Oi! Vim pelo site do 7º EJC 🙂", "Meu nome: " + nm.trim()];
@@ -1358,6 +1448,12 @@
       lines.push("Situação: tô em dúvida");
       lines.push("Dúvidas que eu vi: " + (seen.length ? seen.join(", ") : "nenhuma ainda"));
       lines.push("Queria conversar.");
+    } else if (ctx === "vou-duvida"){
+      lines.push("Situação: tava em dúvida, mas decidi: EU VOU! 🙌");
+      if (seen.length) lines.push("Dúvidas que eu vi: " + seen.join(", "));
+    } else if (ctx === "vou-desisti"){
+      lines.push("Situação: tinha pensado em desistir, mas mudei de ideia: EU VOU! 🙌");
+      if (pickedReason) lines.push("O que tinha pesado: " + pickedReason);
     } else {
       lines.push("Situação: pensei em desistir");
       lines.push("Motivo: " + (reason || "não informado"));
@@ -1392,8 +1488,8 @@
     document.getElementById("dqAK").textContent = d.t;
     document.getElementById("dqAT").textContent = d.h;
     document.getElementById("dqAP").textContent = d.p;
-    document.getElementById("dqCount").textContent = seen.length + " de 6 vistas";
-    var left = dqOrder.filter(function(x){ return seen.indexOf(DQ[x].t) < 0; });
+    updDqCount();
+    var left = dqKeys().filter(function(x){ return seen.indexOf(DQ[x].t) < 0; });
     document.getElementById("dqNext").style.display = left.length ? "" : "none";
     dqAnswer.removeAttribute("hidden");
     if (scroll) setTimeout(function(){ dqAnswer.scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "nearest"}); dqAnswer.focus({preventScroll:true}); }, 30);
@@ -1402,7 +1498,7 @@
     c.addEventListener("click", function(){ showDq(c.getAttribute("data-dq"), true); });
   });
   document.getElementById("dqNext").addEventListener("click", function(){
-    var left = dqOrder.filter(function(x){ return seen.indexOf(DQ[x].t) < 0; });
+    var left = dqKeys().filter(function(x){ return seen.indexOf(DQ[x].t) < 0; });
     if (left.length) showDq(left[0], true);
   });
   Array.prototype.forEach.call(document.querySelectorAll("[data-scroll]"), function(a){
@@ -1465,19 +1561,34 @@
       if (t === "gate") openGate(); else go(t, true);
     });
   });
+  /* botões "eu vou": avisam no WhatsApp com o nome e abrem a página de quem aceitou */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-wa-go]"), function(a){
+    a.addEventListener("click", function(e){
+      if (isClosed()){ e.preventDefault(); applyDeadline(); showToast("O prazo das exceções terminou em 21/11"); return; }
+      var sec = a.closest("section"), inp = sec && sec.querySelector(".name-input");
+      if (inp && !inp.value.trim()){
+        e.preventDefault(); inp.focus(); showToast("Escreve seu nome primeiro 🙂"); return;
+      }
+      a.href = waLink(a.getAttribute("data-wa-ctx"));
+      setTimeout(function(){ go(a.getAttribute("data-wa-go"), true); }, 300);
+    });
+  });
+
   /* motivos da desistência */
+  var REASONS = ["prova","trabalho","data","dias","outro"];
   var reasonsEl = document.getElementById("reasons"), picked = document.getElementById("rPicked");
   function resetReasons(){
-    reasonsEl.removeAttribute("hidden"); picked.setAttribute("hidden", "");
-    ["prova","data","outro"].forEach(function(k){ document.getElementById("r-" + k).setAttribute("hidden", ""); });
+    reasonsEl.removeAttribute("hidden"); picked.setAttribute("hidden", ""); pickedReason = "";
+    REASONS.forEach(function(k){ document.getElementById("r-" + k).setAttribute("hidden", ""); });
   }
   Array.prototype.forEach.call(document.querySelectorAll("[data-reason]"), function(bt){
     bt.addEventListener("click", function(){
       var r = bt.getAttribute("data-reason");
       if (r === "animo"){ go("duvida", false); return; }
-      ["prova","data","outro"].forEach(function(k){ var el = document.getElementById("r-" + k); if (k === r) el.removeAttribute("hidden"); else el.setAttribute("hidden", ""); });
+      REASONS.forEach(function(k){ var el = document.getElementById("r-" + k); if (k === r) el.removeAttribute("hidden"); else el.setAttribute("hidden", ""); });
       reasonsEl.setAttribute("hidden", "");
-      document.getElementById("rPickedTxt").textContent = bt.querySelector("b").textContent;
+      pickedReason = bt.querySelector("b").textContent;
+      document.getElementById("rPickedTxt").textContent = pickedReason;
       picked.removeAttribute("hidden");
       var panel = document.getElementById("r-" + r);
       setTimeout(function(){ picked.scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "start"}); panel.focus({preventScroll:true}); }, 40);
