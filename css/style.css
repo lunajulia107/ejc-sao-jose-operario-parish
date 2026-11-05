@@ -2994,7 +2994,7 @@ body:not([data-state="aceitei"]) .menu-btn {
 
 /* ===== desisti v2 ===== */
 .ds-wrap {
-  max-width: 620px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
 }
