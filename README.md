@@ -30,7 +30,7 @@
 
 - A resposta do pop-up, o checklist e o nome ficam salvos no aparelho
 - As mensagens do WhatsApp já vão com o nome e o contexto da pessoa
-- Depois de **21/11** os botões "eu vou" e os contatos de WhatsApp somem sozinhos
+- Depois de **18/11** os botões "eu vou" e os contatos de WhatsApp somem sozinhos
 
 ---
 
@@ -45,7 +45,7 @@ Para publicar: **Settings → Pages → Deploy from a branch → `main` / `(root
 | Variável | O que faz |
 | --- | --- |
 | `WA_NUMBER` | Número do WhatsApp que recebe as mensagens |
-| `DEADLINE` | Prazo das exceções (21/11/2026 às 23h59) |
+| `DEADLINE` | Prazo das exceções (18/11/2026 às 23h59) |
 | `target` | Data da contagem regressiva |
 
 > [!TIP]
