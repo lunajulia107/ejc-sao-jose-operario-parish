@@ -243,7 +243,7 @@
   var pickedReason = ""; /* motivo escolhido na página de desistência */
 
   /* ---- prazo pra quem estava em dúvida ou desistiu avisar que vai ---- */
-  var DEADLINE = new Date("2026-11-21T23:59:59-03:00").getTime();
+  var DEADLINE = new Date("2026-11-18T23:59:59-03:00").getTime();
   /* pra testar como fica depois do prazo: abra a página com ?prazo=encerrado */
   function isClosed() {
     return /[?&]prazo=encerrado/.test(location.search) || Date.now() > DEADLINE;
@@ -566,7 +566,7 @@
         if (isClosed()) {
           e.preventDefault();
           applyDeadline();
-          showToast("O prazo das exceções terminou em 21/11");
+          showToast("O prazo das exceções terminou em 18/11");
           return;
         }
         var sec = a.closest("section"),
